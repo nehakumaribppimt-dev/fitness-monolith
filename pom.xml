@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>  <!-- this is an XML document-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">  <!-- This represents your Maven project.-->
+
+	<modelVersion>4.0.0</modelVersion>   <!-- It means the POM follows Maven's 4.0.0 model schema.-->
+
+	<parent>  <!-- use to provides useful defaults-->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.0.6</version>  <!-- It means the Spring Boot version is 4.0.6  .Spring Boot decides compatible versions for other dependencies-->
+		<relativePath/> <!-- It tells Maven: Don't search for this parent POM in my local project directory. Resolve it from the repository.-->
+	</parent>
+
+	<groupId>com.example</groupId> <!-- package name -->
+	<artifactId>fitness-monolith</artifactId> <!-- project name -->
+	<version>0.0.1-SNAPSHOT</version> <!-- project version -->
+
+	<!-- These are project metadata. They aren't necessary for running application. -->
+	<name/>
+	<description/>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+
+	<properties>
+		<java.version>17</java.version> <!-- java version SB will be using  -->
+	</properties>
+
+	<dependencies>
+
+		<!-- Actuator is used for monitoring and managing our running application. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- This is our main database/ORM dependency.-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- This is the JDBC driver for MySQL. -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope> <!-- Maven doesn't need this library for compiling your application code,
+									but it needs it when the application actually runs, so scope is runtime
+									At runtime Spring needs the MySQL driver to establish the actual database connection.-->
+		</dependency>
+
+		<!-- Lombok reduces boilerplate. eg- @getter,@setter-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional> <!-- Projects depending on my project should not automatically receive Lombok. -->
+		</dependency>
+
+		<!-- This brings Spring Security into our application - Authentication , Authorization-->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency> -->
+
+		<!-- It provides the Spring MVC web stack and Tomcat. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
+
+		<!-- it automatically restart the application when we modify anything and save it. we dont need to manually stop and restart the app -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope> <!-- becaue it is needed while running during development. -->
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Used when testing our repository layer. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa-test</artifactId>
+			<scope>test</scope> <!-- This means these dependencies are only available while compiling/running tests.
+										They aren't required for the normal application. -->
+		</dependency>
+
+		<!-- Provides Actuator-related testing support. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Used to test Spring Security. -->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security-test</artifactId>
+			<scope>test</scope>
+		</dependency> -->
+
+		<!-- Used for testing your MVC/REST layer. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	<!-- is a java liberary used for serialization and deserealization b/w java objs and json -->
+		<!--<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency> -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-jackson2</artifactId>
+		</dependency>
+
+</dependencies>
+
+
+<!-- This is not an application dependency. It is a Maven build plugin.
+        The Spring Boot Maven Plugin can package executable JAR/WAR files and run your application.-->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
